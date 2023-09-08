@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
+import {act} from 'react-test-renderer';
 
 export interface AccountState {
   username: string;
@@ -17,8 +18,11 @@ export const accountSlice = createSlice({
   name: 'account',
   initialState,
   reducers: {
-    setAccount: (state, action: PayloadAction<string>) => {
-      state.username = action.payload;
+    setAccount: (state, action: PayloadAction<AccountState>) => {
+      console.log('Payload', action.payload);
+      state.username = action.payload.username;
+      state.type = action.payload.type;
+      state.token = action.payload.token;
     },
   },
 });

@@ -7,6 +7,7 @@ import {book} from '../types/Book';
 import BookCard from '../components/BookCard';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/configureStore';
+import axios from 'axios';
 
 type Props = NativeStackScreenProps<any, any>;
 
@@ -33,18 +34,23 @@ export default function Home(props: Props): JSX.Element {
     // },
   ]);
 
-  const account = useSelector((state: RootState) => state.account.username);
-  console.log("Current account", account);
+  const account = useSelector((state: RootState) => state.account);
+  console.log('Current account', account);
   const [refresh, setRefresh] = useState(true);
   const fetchBooks = () => {
     // setRefresh(true)
-    fetch('http://192.168.1.6:3000/books/')
+    axios
+      .get('http://192.168.1.6:3000/books/', {
+        headers: {
+          'x-auth-token': account.token,
+        },
+      })
       .then(res => {
-        res.json().then((data: book[]) => {
-          console.log('Got dataa', data[0]);
-          setBooks(data);
+        if (res.status === 200) {
+          console.log('Got dataa', res.data[0]);
+          setBooks(res.data);
           setRefresh(false);
-        });
+        }
       })
       .catch(err => {
         console.log(err);
