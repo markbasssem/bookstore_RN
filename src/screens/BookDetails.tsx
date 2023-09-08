@@ -1,15 +1,15 @@
 import {StyleSheet, Text, View, Image} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../types/navigation';
+import {BookDetailsParamList} from '../types/navigation';
 import {IMAGE_URL} from './constants';
 import AppBar from '../components/AppBar';
 import Stat from '../components/Stat';
-type Props = NativeStackScreenProps<RootStackParamList, 'BookDetails'>;
+type Props = NativeStackScreenProps<BookDetailsParamList, 'BookDetails'>;
 
 export default function BookDetails({route, navigation}: Props): JSX.Element {
   return (
     <View style={styles.container}>
-      <AppBar navigation={navigation}/>
+      <AppBar navigation={navigation} />
       {/* Book header */}
       <View style={styles.bookHeader}>
         <View>
@@ -18,7 +18,7 @@ export default function BookDetails({route, navigation}: Props): JSX.Element {
             style={{
               height: 125,
               width: 150,
-                resizeMode: 'contain',
+              resizeMode: 'contain',
             }}
             source={{
               uri: route.params.book.image || IMAGE_URL,
@@ -27,7 +27,9 @@ export default function BookDetails({route, navigation}: Props): JSX.Element {
         </View>
         <View style={{marginLeft: 10}}>
           <Text style={styles.titleStyle}>{route.params.book.title}</Text>
-          <Text style={styles.authorStyle}>{route.params.book.author.name}</Text>
+          <Text style={styles.authorStyle}>
+            {route.params.book.author.name}
+          </Text>
         </View>
       </View>
       {/* desc */}
@@ -41,9 +43,13 @@ export default function BookDetails({route, navigation}: Props): JSX.Element {
       </View>
       {/* statts */}
       <View style={styles.bookStats}>
-        <Stat first='selling' second={route.params.book.selling} third='copies'/>
-        <Stat first='rating' second={route.params.book.rating} third='stars'/>
-        <Stat first='Length' second={route.params.book.pages} third='pages'/>
+        <Stat
+          first="selling"
+          second={route.params.book.selling}
+          third="copies"
+        />
+        <Stat first="rating" second={route.params.book.rating} third="stars" />
+        <Stat first="Length" second={route.params.book.pages} third="pages" />
       </View>
     </View>
   );
@@ -53,7 +59,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 15,
     flex: 1,
-    backgroundColor: "white"
+    backgroundColor: 'white',
     // justifyContent: 'space-between',
   },
   bookHeader: {
