@@ -1,92 +1,44 @@
 import React, {useEffect, useState} from 'react';
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 
 import {IMAGE_URL} from './constants';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {book} from '../types/Book';
 import BookCard from '../components/BookCard';
+import {useSelector} from 'react-redux';
+import {RootState} from '../store/configureStore';
 
 type Props = NativeStackScreenProps<any, any>;
 
 export default function Home(props: Props): JSX.Element {
   const [books, setBooks] = useState<book[]>([
-    {
-      _id: '649080d4fb1acbd592d979d7',
-      title: 'Sad days',
-      rating: 11,
-      author: 'Mark',
-      genre: ['classic', 'drama'],
-      selling: 7,
-      image:
-        'https://www.coreldraw.com/static/cdgs/landing_pages/seo/logo-design/04-colors.jpg',
-    },
-    {
-      _id: '6490809bfb1acbd592d979d5',
-      title: 'Wind of time',
-      rating: 10,
-      author: 'Mark',
-      genre: ['sci-fi', 'horror'],
-      selling: 6,
-      image: IMAGE_URL,
-    },
-    {
-      _id: '6490809bfb1acbd592d979d5',
-      title: 'Wind of time',
-      rating: 10,
-      author: 'Mark',
-      genre: ['sci-fi', 'horror'],
-      selling: 6,
-      image:
-        'https://www.coreldraw.com/static/cdgs/landing_pages/seo/logo-design/04-colors.jpg',
-    },
-    {
-      _id: '649080d4fb1acbd592d979d7',
-      title: 'Sad days',
-      rating: 11,
-      author: 'Mark',
-      genre: ['classic', 'drama'],
-      selling: 7,
-      image: IMAGE_URL,
-    },
-    {
-      _id: '6490809bfb1acbd592d979d5',
-      title: 'Wind of time',
-      rating: 10,
-      author: 'Mark',
-      genre: ['sci-fi', 'horror'],
-      selling: 6,
-      image:
-        'https://www.coreldraw.com/static/cdgs/landing_pages/seo/logo-design/04-colors.jpg',
-    },
-    {
-      _id: '649080d4fb1acbd592d979d7',
-      title: 'Sad days',
-      rating: 11,
-      author: 'Mark',
-      genre: ['classic', 'drama'],
-      selling: 7,
-      image: IMAGE_URL,
-    },
-    {
-      _id: '6490809bfb1acbd592d979d5',
-      title: 'Wind of time',
-      rating: 10,
-      author: 'Mark',
-      genre: ['sci-fi', 'horror'],
-      selling: 6,
-      image:
-        'https://www.coreldraw.com/static/cdgs/landing_pages/seo/logo-design/04-colors.jpg',
-    },
+    // {
+    //   _id: '649080d4fb1acbd592d979d7',
+    //   title: 'Sad days',
+    //   rating: 11,
+    //   author: 'Mark',
+    //   genre: ['classic', 'drama'],
+    //   selling: 7,
+    //   image:
+    //     'https://www.coreldraw.com/static/cdgs/landing_pages/seo/logo-design/04-colors.jpg',
+    // },
+    // {
+    //   _id: '6490809bfb1acbd592d979d5',
+    //   title: 'Wind of time',
+    //   rating: 10,
+    //   author: 'Mark',
+    //   genre: ['sci-fi', 'horror'],
+    //   selling: 6,
+    //   image: IMAGE_URL,
+    // },
   ]);
+
+  const account = useSelector((state: RootState) => state.account.username);
+  console.log("Current account", account);
   const [refresh, setRefresh] = useState(true);
   const fetchBooks = () => {
     // setRefresh(true)
-    fetch('http://192.168.1.13:3000/aggr')
+    fetch('http://192.168.1.6:3000/books/')
       .then(res => {
         res.json().then((data: book[]) => {
           console.log('Got dataa', data[0]);
@@ -95,7 +47,7 @@ export default function Home(props: Props): JSX.Element {
         });
       })
       .catch(err => {
-        alert(err);
+        console.log(err);
         setRefresh(false);
       });
   };
