@@ -1,14 +1,11 @@
 import {
-  Pressable,
   StyleSheet,
   Text,
   TouchableHighlight,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store/configureStore';
-import {useState} from 'react';
 import {logOut} from '../store/reducers/accountReducer';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 

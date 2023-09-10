@@ -48,7 +48,6 @@ export default function Home(props: Props): JSX.Element {
       })
       .then(res => {
         if (res.status === 200) {
-          console.log('Got dataa', res.data[0]);
           setBooks(res.data);
           setRefresh(false);
         }

@@ -38,7 +38,7 @@ export default function BookDetails({route, navigation}: Props): JSX.Element {
           Description
         </Text>
         <Text style={{color: '#ababab', fontWeight: '400'}}>
-          Some random texttttttt
+          {route.params.book.description}
         </Text>
       </View>
       {/* statts */}

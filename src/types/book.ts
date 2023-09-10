@@ -1,12 +1,13 @@
-import { author } from "./author";
+import {author} from './author';
 
 export type book = {
-    _id: string;
-    title: string;
-    rating: number;
-    selling: number;
-    author: author;
-    genre: string[];
-    image: string;
-    pages: number;
-  };
+  _id: string;
+  title: string;
+  rating: number;
+  selling: number;
+  author: author;
+  genre: string[];
+  image: string;
+  pages: number;
+  description: string;
+};
