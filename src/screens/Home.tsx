@@ -8,6 +8,7 @@ import BookCard from '../components/BookCard';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/configureStore';
 import axios from 'axios';
+import AppBar from '../components/AppBar';
 
 type Props = NativeStackScreenProps<any, any>;
 
@@ -40,7 +41,7 @@ export default function Home(props: Props): JSX.Element {
   const fetchBooks = () => {
     // setRefresh(true)
     axios
-      .get('http://192.168.1.6:3000/books/', {
+      .get('http://192.168.10.131:3000/books/', {
         headers: {
           'x-auth-token': account.token,
         },
@@ -64,6 +65,7 @@ export default function Home(props: Props): JSX.Element {
 
   return (
     <View style={styles.container}>
+      <AppBar navigation={props.navigation} />
       <Text style={styles.titleStyle}>Books</Text>
       <View>
         <FlatList

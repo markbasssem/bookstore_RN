@@ -2,14 +2,14 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {BookDetailsParamList} from '../types/navigation';
 import {IMAGE_URL} from './constants';
-import AppBar from '../components/AppBar';
+import BackBar from '../components/BackBar';
 import Stat from '../components/Stat';
 type Props = NativeStackScreenProps<BookDetailsParamList, 'BookDetails'>;
 
 export default function BookDetails({route, navigation}: Props): JSX.Element {
   return (
     <View style={styles.container}>
-      <AppBar navigation={navigation} />
+      <BackBar navigation={navigation} />
       {/* Book header */}
       <View style={styles.bookHeader}>
         <View>
