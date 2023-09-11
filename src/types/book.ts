@@ -1,11 +1,11 @@
-import {author} from './author';
+import {Author} from './Author';
 
-export type book = {
+export type Book = {
   _id: string;
   title: string;
   rating: number;
   selling: number;
-  author: author;
+  author: Author;
   genre: string[];
   image: string;
   pages: number;

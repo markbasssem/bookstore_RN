@@ -41,7 +41,7 @@ export default function BookDetails({route, navigation}: Props): JSX.Element {
           {route.params.book.description}
         </Text>
       </View>
-      {/* statts */}
+      {/* stats */}
       <View style={styles.bookStats}>
         <Stat
           first="selling"

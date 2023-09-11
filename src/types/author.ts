@@ -1,4 +1,4 @@
-export type author = {
+export type Author = {
   _id: string;
   name: string;
   age: number;

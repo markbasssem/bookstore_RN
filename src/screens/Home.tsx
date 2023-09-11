@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
-
-import {IMAGE_URL} from './constants';
+import {BackHandler, FlatList, StyleSheet, Text, View} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {book} from '../types/Book';
+import {Book} from '../types/Book';
 import BookCard from '../components/BookCard';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/configureStore';
@@ -13,7 +11,7 @@ import AppBar from '../components/AppBar';
 type Props = NativeStackScreenProps<any, any>;
 
 export default function Home(props: Props): JSX.Element {
-  const [books, setBooks] = useState<book[]>([
+  const [books, setBooks] = useState<Book[]>([
     // {
     //   _id: '649080d4fb1acbd592d979d7',
     //   title: 'Sad days',
@@ -38,6 +36,7 @@ export default function Home(props: Props): JSX.Element {
   const account = useSelector((state: RootState) => state.account);
   console.log('Current account', account);
   const [refresh, setRefresh] = useState(true);
+  BackHandler.addEventListener("hardwareBackPress", () => true)
   const fetchBooks = () => {
     // setRefresh(true)
     axios
@@ -72,6 +71,12 @@ export default function Home(props: Props): JSX.Element {
           horizontal
           refreshing={refresh}
           onRefresh={fetchBooks}
+          renderItem={item => <BookCard book={item.item} navigation={props} />}
+        />
+      </View>
+      <View style={{height: 200}}>
+        <FlatList
+          data={books}
           renderItem={item => <BookCard book={item.item} navigation={props} />}
         />
       </View>

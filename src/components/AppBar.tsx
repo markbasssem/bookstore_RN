@@ -47,12 +47,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   signOutNormal: {
-    backgroundColor: '#ff474c',
-    padding: 6,
-    borderRadius: 6,
-  },
-  signOutPressed: {
-    backgroundColor: 'green',
+    backgroundColor: '#c22f39',
     padding: 6,
     borderRadius: 6,
   },
