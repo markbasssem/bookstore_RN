@@ -6,14 +6,11 @@
  */
 
 import React, {useEffect, useState} from 'react';
-import Home from './screens/Home';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import BookDetails from './screens/BookDetails';
 import Login from './screens/Login';
-import {Provider, useDispatch} from 'react-redux';
-import {store} from './store/configureStore';
+import {useDispatch} from 'react-redux';
 import {getAccount, isLoggedIn} from './storage/cache';
 import SplashScreen from './screens/SplashScreen';
 import {setAccount} from './store/reducers/accountReducer';

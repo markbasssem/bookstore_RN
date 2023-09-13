@@ -7,13 +7,10 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../store/configureStore';
+import {useDispatch} from 'react-redux';
 import {setAccount} from '../store/reducers/accountReducer';
 import axios from 'axios';
-import {Alert} from 'react-native';
 import {server} from './constants';
-import EncryptedStorage from 'react-native-encrypted-storage';
 import {User} from '../types/User';
 import {setAccountAtLocalStorage} from '../storage/cache';
 

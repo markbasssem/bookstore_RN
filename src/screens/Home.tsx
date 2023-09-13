@@ -37,10 +37,7 @@ export default function Home(props: Props): JSX.Element {
   const account = useSelector((state: RootState) => state.account);
   console.log('Current account', account);
   const [refresh, setRefresh] = useState(true);
-  // BackHandler.addEventListener('hardwareBackPress', () => {
-  //   console.log('swipedd');
-  //   return true;
-  // });
+
   const fetchBooks = () => {
     // setRefresh(true)
     axios
