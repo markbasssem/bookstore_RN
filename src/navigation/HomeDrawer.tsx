@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {Button, View} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Home from '../screens/Home';
+import ProfileDrawer from '../components/ProfileDrawer';
+import HomeStack from './HomeStack';
 
 function NotificationsScreen({navigation}) {
   return (
@@ -16,9 +17,10 @@ const Drawer = createDrawerNavigator();
 export default function HomeDrawer() {
   return (
     <Drawer.Navigator
+      drawerContent={props => <ProfileDrawer {...props} />}
       initialRouteName="Home"
-      screenOptions={{headerShown: false, swipeEdgeWidth: 150}}>
-      <Drawer.Screen name="Home" component={Home} />
+      screenOptions={{headerShown: false, swipeEdgeWidth: 275}}>
+      <Drawer.Screen name="HomeStack" component={HomeStack} />
       <Drawer.Screen name="Notifications" component={NotificationsScreen} />
     </Drawer.Navigator>
   );

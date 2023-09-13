@@ -62,7 +62,7 @@ const LoginForm = (props: Props) => {
                 const data: User = res.data;
                 await setAccountAtLocalStorage(data.token);
                 dispatch(setAccount(data));
-                props.navigation.replace('Home');
+                props.navigation.replace('HomeDrawer');
               }
             })
             .catch(err => {

@@ -51,16 +51,8 @@ function Init(): JSX.Element {
       <Stack.Navigator
         screenOptions={{headerShown: false}}
         initialRouteName={isSignedIn === 'false' ? 'Login' : 'HomeDrawer'}>
-        {/* {isSignedIn === 'false' ? (
-          // No token found, user isn't signed in
-          <Stack.Screen name="SignIn" component={Login} />
-        ) : (
-          // User is signed in
-          <Stack.Screen name="Home" component={Home} />
-        )} */}
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="HomeDrawer" component={HomeDrawer} />
-        <Stack.Screen name="BookDetails" component={BookDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );
