@@ -59,7 +59,7 @@ export default function Home(props: Props): JSX.Element {
   };
 
   useEffect(() => {
-    // fetchBooks();
+    fetchBooks();
   }, []);
 
   return (
@@ -72,12 +72,6 @@ export default function Home(props: Props): JSX.Element {
           horizontal
           refreshing={refresh}
           onRefresh={fetchBooks}
-          renderItem={item => <BookCard book={item.item} navigation={props} />}
-        />
-      </View>
-      <View style={{height: 200}}>
-        <FlatList
-          data={books}
           renderItem={item => <BookCard book={item.item} navigation={props} />}
         />
       </View>

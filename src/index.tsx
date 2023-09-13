@@ -17,6 +17,7 @@ import {store} from './store/configureStore';
 import {getAccount, isLoggedIn} from './storage/cache';
 import SplashScreen from './screens/SplashScreen';
 import {setAccount} from './store/reducers/accountReducer';
+import HomeDrawer from './navigation/HomeDrawer';
 
 const Stack = createNativeStackNavigator();
 
@@ -49,7 +50,7 @@ function Init(): JSX.Element {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{headerShown: false}}
-        initialRouteName={isSignedIn === 'false' ? 'Login' : 'Home'}>
+        initialRouteName={isSignedIn === 'false' ? 'Login' : 'HomeDrawer'}>
         {/* {isSignedIn === 'false' ? (
           // No token found, user isn't signed in
           <Stack.Screen name="SignIn" component={Login} />
@@ -58,7 +59,7 @@ function Init(): JSX.Element {
           <Stack.Screen name="Home" component={Home} />
         )} */}
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="HomeDrawer" component={HomeDrawer} />
         <Stack.Screen name="BookDetails" component={BookDetails} />
       </Stack.Navigator>
     </NavigationContainer>
