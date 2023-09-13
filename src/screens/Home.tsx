@@ -7,6 +7,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../store/configureStore';
 import axios from 'axios';
 import AppBar from '../components/AppBar';
+import { server } from './constants';
 
 type Props = NativeStackScreenProps<any, any>;
 
@@ -36,11 +37,11 @@ export default function Home(props: Props): JSX.Element {
   const account = useSelector((state: RootState) => state.account);
   console.log('Current account', account);
   const [refresh, setRefresh] = useState(true);
-  BackHandler.addEventListener("hardwareBackPress", () => true)
+  BackHandler.addEventListener('hardwareBackPress', () => true);
   const fetchBooks = () => {
     // setRefresh(true)
     axios
-      .get('http://192.168.10.131:3000/books/', {
+      .get(`${server}:3000/books/`, {
         headers: {
           'x-auth-token': account.token,
         },
@@ -58,7 +59,7 @@ export default function Home(props: Props): JSX.Element {
   };
 
   useEffect(() => {
-    fetchBooks();
+    // fetchBooks();
   }, []);
 
   return (

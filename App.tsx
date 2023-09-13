@@ -5,28 +5,27 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Home from './src/screens/Home';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BookDetails from './src/screens/BookDetails';
 import Login from './src/screens/Login';
-import {Provider} from 'react-redux';
+import {Provider, useDispatch} from 'react-redux';
 import {store} from './src/store/configureStore';
+import {getAccount, isLoggedIn} from './src/storage/cache';
+import SplashScreen from './src/screens/SplashScreen';
+import { setAccount } from './src/store/reducers/accountReducer';
+import Init from './src';
 
 const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
+ 
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="BookDetails" component={BookDetails} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Init/>
     </Provider>
   );
 }

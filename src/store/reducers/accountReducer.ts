@@ -1,36 +1,28 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import EncryptedStorage from 'react-native-encrypted-storage';
+import {User} from '../../types/User';
 
-export interface AccountState {
-  username: string;
-  type: string;
-  token: string;
-}
-
-const initialState: AccountState = {
+const initialState: User = {
   username: '',
-  type: '',
   token: '',
+  type: '',
 };
 
 export const accountSlice = createSlice({
   name: 'account',
   initialState,
   reducers: {
-    setAccount: (state, action: PayloadAction<AccountState>) => {
+    setAccount: (state, action: PayloadAction<User>) => {
       state.username = action.payload.username;
-      state.type = action.payload.type;
       state.token = action.payload.token;
-      EncryptedStorage.setItem("Account", action.payload.token)
+      state.type = action.payload.type;
     },
     logOut: (state, action) => {
-      state.username = ""
-      state.type = ""
-      state.token = ""
-      EncryptedStorage.setItem("Account", "")
-      
-    }
+      state.username = '';
+      state.token = '';
+      state.type = '';
+    },
   },
 });
 

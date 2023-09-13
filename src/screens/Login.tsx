@@ -11,7 +11,11 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store/configureStore';
 import {setAccount} from '../store/reducers/accountReducer';
 import axios from 'axios';
-import { Alert } from 'react-native';
+import {Alert} from 'react-native';
+import {server} from './constants';
+import EncryptedStorage from 'react-native-encrypted-storage';
+import { User } from '../types/User';
+import { setAccountAtLocalStorage } from '../storage/cache';
 
 type Props = NativeStackScreenProps<any, any>;
 
@@ -40,20 +44,21 @@ const LoginForm = (props: Props) => {
         style={styles.buttonContainer}
         onPress={() => {
           axios
-            .post('http://192.168.10.131:3000/auth/signin', {
+            .post(`${server}:3000/auth/signin`, {
               username,
               password,
             })
-            .then(res => {
+            .then(async res => {
               if (res.status === 200) {
-                const data = res.data;
+                const data: User = res.data;
+                await setAccountAtLocalStorage(data.token)
                 dispatch(setAccount(data));
-
                 props.navigation.navigate('Home');
               }
-            }).catch(err => {
-               alert("Invalid username or password")
             })
+            .catch(err => {
+              alert('Invalid username or password');
+            });
         }}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
