@@ -22,7 +22,7 @@ export default function AppBar(props: navProp): JSX.Element {
         onPress={async () => {
           await setAccountAtLocalStorage('');
           dispatch(logOut);
-          props.navigation.navigate('Login');
+          props.navigation.replace('Login');
         }}>
         <Text>Sign Out</Text>
       </TouchableHighlight>

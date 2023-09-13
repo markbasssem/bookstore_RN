@@ -28,5 +28,4 @@ export async function getAccount() {
 
 export async function setAccountAtLocalStorage(token: string) {
   await EncryptedStorage.setItem("Account", token)
-  // console.log((await EncryptedStorage.getItem("Account")))
 }
