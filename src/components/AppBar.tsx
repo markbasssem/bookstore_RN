@@ -3,8 +3,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store/configureStore';
 import {logOut} from '../store/reducers/accountReducer';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import EncryptedStorage from 'react-native-encrypted-storage';
 import {setAccountAtLocalStorage} from '../storage/cache';
+import Icon from 'react-native-vector-icons/AntDesign';
+import {DrawerActions} from '@react-navigation/native';
 
 type navProp = {
   navigation: NativeStackNavigationProp<any>;
@@ -15,7 +16,17 @@ export default function AppBar(props: navProp): JSX.Element {
   const dispatch = useDispatch();
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome {username}!!</Text>
+      <View style={styles.leftPart}>
+        <Icon
+          name="profile"
+          size={30}
+          color="#718075"
+          onPress={() => {
+            props.navigation.dispatch(DrawerActions.openDrawer());
+          }}
+        />
+        <Text style={styles.welcome}>Welcome {username}!!</Text>
+      </View>
       <TouchableHighlight
         style={styles.signOutNormal}
         underlayColor={'#ff6863'}
@@ -43,10 +54,14 @@ const styles = StyleSheet.create({
   welcome: {
     fontSize: 20,
     color: 'black',
+    marginHorizontal: 10,
   },
   signOutNormal: {
     backgroundColor: '#c22f39',
     padding: 6,
     borderRadius: 6,
+  },
+  leftPart: {
+    flexDirection: 'row',
   },
 });

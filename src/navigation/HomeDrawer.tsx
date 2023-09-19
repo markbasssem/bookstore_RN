@@ -19,7 +19,7 @@ export default function HomeDrawer() {
     <Drawer.Navigator
       drawerContent={props => <ProfileDrawer {...props} />}
       initialRouteName="Home"
-      screenOptions={{headerShown: false, swipeEdgeWidth: 275}}>
+      screenOptions={{headerShown: false, swipeEdgeWidth: 75}}>
       <Drawer.Screen name="HomeStack" component={HomeStack} />
       <Drawer.Screen name="Notifications" component={NotificationsScreen} />
     </Drawer.Navigator>
