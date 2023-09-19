@@ -10,8 +10,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {useSelector} from 'react-redux';
-import {RootState} from '../store/configureStore';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/configureStore';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 
@@ -35,9 +35,9 @@ export default function ProfileDrawer(props) {
       <DrawerContentScrollView>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
-      <View style={{paddingHorizontal: 20, borderTopWidth: 1, borderTopColor: '#bbb'}}>
-        <TouchableOpacity onPress={() => {}} style={{paddingVertical: 15}}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <View style={{ paddingHorizontal: 20, borderTopWidth: 1, borderTopColor: '#bbb' }}>
+        <TouchableOpacity onPress={() => { }} style={{ paddingVertical: 15 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <IonIcon name="share-social-outline" size={22} />
             <Text
               style={{
@@ -49,8 +49,8 @@ export default function ProfileDrawer(props) {
             </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => {}} style={{paddingVertical: 15}}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <TouchableOpacity onPress={() => { }} style={{ paddingVertical: 15 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <IonIcon name="exit-outline" size={22} />
             <Text
               style={{

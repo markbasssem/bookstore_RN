@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {BackHandler, FlatList, StyleSheet, Text, View} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {Book} from '../types/Book';
+import React, { useEffect, useState } from 'react';
+import { BackHandler, FlatList, StyleSheet, Text, View } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Book } from '../types/Book';
 import BookCard from '../components/BookCard';
-import {useSelector} from 'react-redux';
-import {RootState} from '../store/configureStore';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/configureStore';
 import axios from 'axios';
 import AppBar from '../components/AppBar';
-import {server} from './constants';
+import { server } from './constants';
 type Props = NativeStackScreenProps<any, any>;
 
 export default function Home(props: Props): JSX.Element {
@@ -79,7 +79,7 @@ export default function Home(props: Props): JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  container: {backgroundColor: 'white', flex: 1, padding: 10},
+  container: { backgroundColor: 'white', flex: 1, padding: 10 },
   titleStyle: {
     color: 'black',
     fontSize: 18,

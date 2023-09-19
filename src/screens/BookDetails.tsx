@@ -1,12 +1,12 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {BookDetailsParamList} from '../types/navigation';
-import {IMAGE_URL} from './constants';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { BookDetailsParamList } from '../types/navigation';
+import { IMAGE_URL } from './constants';
 import BackBar from '../components/BackBar';
 import Stat from '../components/Stat';
 type Props = NativeStackScreenProps<BookDetailsParamList, 'BookDetails'>;
 
-export default function BookDetails({route, navigation}: Props): JSX.Element {
+export default function BookDetails({ route, navigation }: Props): JSX.Element {
   return (
     <View style={styles.container}>
       <BackBar navigation={navigation} />
@@ -25,7 +25,7 @@ export default function BookDetails({route, navigation}: Props): JSX.Element {
             }}
           />
         </View>
-        <View style={{marginLeft: 10}}>
+        <View style={{ marginLeft: 10 }}>
           <Text style={styles.titleStyle}>{route.params.book.title}</Text>
           <Text style={styles.authorStyle}>
             {route.params.book.author.name}
@@ -34,10 +34,10 @@ export default function BookDetails({route, navigation}: Props): JSX.Element {
       </View>
       {/* desc */}
       <View style={styles.bookDescription}>
-        <Text style={[styles.titleStyle, {marginVertical: 15}]}>
+        <Text style={[styles.titleStyle, { marginVertical: 15 }]}>
           Description
         </Text>
-        <Text style={{color: '#ababab', fontWeight: '400'}}>
+        <Text style={{ color: '#ababab', fontWeight: '400' }}>
           {route.params.book.description}
         </Text>
       </View>

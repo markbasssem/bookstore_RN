@@ -5,15 +5,15 @@
  * @format
  */
 
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './screens/Login';
-import {useDispatch} from 'react-redux';
-import {getAccount, isLoggedIn} from './storage/cache';
+import { useDispatch } from 'react-redux';
+import { getAccount, isLoggedIn } from './storage/cache';
 import SplashScreen from './screens/SplashScreen';
-import {setAccount} from './store/reducers/accountReducer';
+import { setAccount } from './store/reducers/accountReducer';
 import HomeDrawer from './navigation/HomeDrawer';
 
 const Stack = createNativeStackNavigator();
@@ -26,7 +26,7 @@ function Init(): JSX.Element {
       if (res) {
         const user = await getAccount();
         console.log('getInitRoute', user);
-        dispatch(setAccount({user}));
+        dispatch(setAccount({ user }));
         setIsSignedIn('true');
       } else {
         setIsSignedIn('false');
@@ -46,10 +46,10 @@ function Init(): JSX.Element {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={{headerShown: false}}
+        screenOptions={{ headerShown: false }}
         initialRouteName={isSignedIn === 'false' ? 'Login' : 'HomeDrawer'}>
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="HomeDrawer" component={HomeDrawer}/>
+        <Stack.Screen name="HomeDrawer" component={HomeDrawer} />
       </Stack.Navigator>
     </NavigationContainer>
   );

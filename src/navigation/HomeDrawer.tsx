@@ -1,15 +1,15 @@
 import * as React from 'react';
-import {Button, StyleSheet, View} from 'react-native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { Button, StyleSheet, View } from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import ProfileDrawer from '../components/ProfileDrawer';
 import HomeStack from './HomeStack';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Antdesign from 'react-native-vector-icons/AntDesign';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-function NotificationsScreen({navigation}: NativeStackScreenProps<any, any>) {
+function NotificationsScreen({ navigation }: NativeStackScreenProps<any, any>) {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button onPress={() => navigation.goBack()} title="Go back home" />
     </View>
   );
@@ -33,7 +33,7 @@ export default function HomeDrawer() {
         name="HomeStack"
         component={HomeStack}
         options={{
-          drawerIcon: ({color}) => (
+          drawerIcon: ({ color }) => (
             <IonIcon name="home-outline" size={24} color={color} />
           ),
         }}
@@ -42,7 +42,7 @@ export default function HomeDrawer() {
         name="Notifications"
         component={NotificationsScreen}
         options={{
-          drawerIcon: ({color}) => (
+          drawerIcon: ({ color }) => (
             <IonIcon name="notifications-outline" size={24} color={color} />
           ),
         }}
@@ -51,7 +51,7 @@ export default function HomeDrawer() {
         name="Profile"
         component={NotificationsScreen}
         options={{
-          drawerIcon: ({color}) => (
+          drawerIcon: ({ color }) => (
             <Antdesign name="profile" size={24} color={color} />
           ),
         }}
@@ -60,7 +60,7 @@ export default function HomeDrawer() {
         name="Settings"
         component={NotificationsScreen}
         options={{
-          drawerIcon: ({color}) => (
+          drawerIcon: ({ color }) => (
             <IonIcon name="settings-outline" size={24} color={color} />
           ),
         }}
@@ -70,5 +70,5 @@ export default function HomeDrawer() {
 }
 
 const styles = StyleSheet.create({
-  labels: {marginLeft: -20, fontSize: 14, fontFamily: 'Roboto-medium'},
+  labels: { marginLeft: -20, fontSize: 14, fontFamily: 'Roboto-medium' },
 });

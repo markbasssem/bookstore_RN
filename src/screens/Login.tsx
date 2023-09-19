@@ -1,5 +1,5 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React, {useEffect, useState} from 'react';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -7,12 +7,12 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import {useDispatch} from 'react-redux';
-import {setAccount} from '../store/reducers/accountReducer';
+import { useDispatch } from 'react-redux';
+import { setAccount } from '../store/reducers/accountReducer';
 import axios from 'axios';
-import {server} from './constants';
-import {User} from '../types/User';
-import {setAccountAtLocalStorage} from '../storage/cache';
+import { server } from './constants';
+import { User } from '../types/User';
+import { setAccountAtLocalStorage } from '../storage/cache';
 
 type Props = NativeStackScreenProps<any, any>;
 
@@ -58,7 +58,7 @@ const LoginForm = (props: Props) => {
               if (res.status === 200) {
                 const user: User = res.data;
                 await setAccountAtLocalStorage(user.token);
-                dispatch(setAccount({user}));
+                dispatch(setAccount({ user }));
                 props.navigation.replace('HomeDrawer');
               }
             })

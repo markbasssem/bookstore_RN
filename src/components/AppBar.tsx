@@ -1,11 +1,11 @@
-import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../store/configureStore';
-import {logOut} from '../store/reducers/accountReducer';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {setAccountAtLocalStorage} from '../storage/cache';
+import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../store/configureStore';
+import { logOut } from '../store/reducers/accountReducer';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { setAccountAtLocalStorage } from '../storage/cache';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {DrawerActions} from '@react-navigation/native';
+import { DrawerActions } from '@react-navigation/native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 
 type navProp = {
@@ -36,7 +36,7 @@ export default function AppBar(props: navProp): JSX.Element {
           dispatch(logOut);
           props.navigation.replace('Login');
         }}>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{ flexDirection: 'row' }}>
           <IonIcon name="exit-outline" size={18} color={'white'} />
           <Text>{'   '}Sign Out</Text>
         </View>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import EncryptedStorage from 'react-native-encrypted-storage';
-import {server} from '../screens/constants';
-import {User} from '../types/User';
+import { server } from '../screens/constants';
+import { User } from '../types/User';
 
 export async function isLoggedIn(): Promise<boolean> {
   try {
@@ -23,7 +23,7 @@ export async function getAccount(): Promise<User> {
       'x-auth-token': token,
     },
   });
-  const obj = {token, ...result.data};
+  const obj = { token, ...result.data };
   return obj;
 }
 

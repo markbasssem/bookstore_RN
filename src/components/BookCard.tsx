@@ -1,7 +1,7 @@
-import {Image, StyleSheet, Text, TouchableHighlight, View} from 'react-native';
-import {Book} from '../types/Book';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {IMAGE_URL} from '../screens/constants';
+import { Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Book } from '../types/Book';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { IMAGE_URL } from '../screens/constants';
 
 type Props = {
   book: Book;
@@ -10,7 +10,7 @@ type Props = {
 
 export default function BookCard(props: Props) {
   const goToBookPage = (book: Book) => {
-    props.navigation.navigation.navigate('BookDetails', {book: book});
+    props.navigation.navigation.navigate('BookDetails', { book: book });
   };
   return (
     <TouchableHighlight
