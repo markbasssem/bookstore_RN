@@ -26,7 +26,7 @@ function Init(): JSX.Element {
       if (res) {
         const user = await getAccount();
         console.log('getInitRoute', user);
-        dispatch(setAccount(user));
+        dispatch(setAccount({user}));
         setIsSignedIn('true');
       } else {
         setIsSignedIn('false');
@@ -49,7 +49,7 @@ function Init(): JSX.Element {
         screenOptions={{headerShown: false}}
         initialRouteName={isSignedIn === 'false' ? 'Login' : 'HomeDrawer'}>
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="HomeDrawer" component={HomeDrawer} />
+        <Stack.Screen name="HomeDrawer" component={HomeDrawer}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

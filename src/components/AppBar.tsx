@@ -6,6 +6,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {setAccountAtLocalStorage} from '../storage/cache';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {DrawerActions} from '@react-navigation/native';
+import IonIcon from 'react-native-vector-icons/Ionicons';
 
 type navProp = {
   navigation: NativeStackNavigationProp<any>;
@@ -29,13 +30,16 @@ export default function AppBar(props: navProp): JSX.Element {
       </View>
       <TouchableHighlight
         style={styles.signOutNormal}
-        underlayColor={'#ff6863'}
+        underlayColor={'#fd6863'}
         onPress={async () => {
           await setAccountAtLocalStorage('');
           dispatch(logOut);
           props.navigation.replace('Login');
         }}>
-        <Text>Sign Out</Text>
+        <View style={{flexDirection: 'row'}}>
+          <IonIcon name="exit-outline" size={18} color={'white'} />
+          <Text>{'   '}Sign Out</Text>
+        </View>
       </TouchableHighlight>
     </View>
   );
@@ -57,7 +61,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   signOutNormal: {
-    backgroundColor: '#c22f39',
+    backgroundColor: '#bb2f39',
     padding: 6,
     borderRadius: 6,
   },

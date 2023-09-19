@@ -8,7 +8,6 @@ import {RootState} from '../store/configureStore';
 import axios from 'axios';
 import AppBar from '../components/AppBar';
 import {server} from './constants';
-
 type Props = NativeStackScreenProps<any, any>;
 
 export default function Home(props: Props): JSX.Element {

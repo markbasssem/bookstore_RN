@@ -1,6 +1,7 @@
 import axios from 'axios';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import {server} from '../screens/constants';
+import {User} from '../types/User';
 
 export async function isLoggedIn(): Promise<boolean> {
   try {
@@ -15,7 +16,7 @@ export async function isLoggedIn(): Promise<boolean> {
   return true;
 }
 
-export async function getAccount() {
+export async function getAccount(): Promise<User> {
   const token = await EncryptedStorage.getItem('Account');
   const result = await axios.get(`${server}:3000/`, {
     headers: {
@@ -27,5 +28,5 @@ export async function getAccount() {
 }
 
 export async function setAccountAtLocalStorage(token: string) {
-  await EncryptedStorage.setItem("Account", token)
+  await EncryptedStorage.setItem('Account', token);
 }

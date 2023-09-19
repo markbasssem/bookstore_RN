@@ -2,9 +2,18 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/configureStore';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import IonIcon from 'react-native-vector-icons/Ionicons';
 
 export default function ProfileDrawer(props) {
   const account = useSelector((state: RootState) => state.account);
@@ -18,10 +27,42 @@ export default function ProfileDrawer(props) {
           style={styles.avatar}
         />
         <Text style={styles.username}>{account.username}</Text>
+        <Text style={styles.coins}>
+          {account.money} coins{'   '}
+          <FontAwesome5 name="coins" size={14} color={'white'}></FontAwesome5>
+        </Text>
       </ImageBackground>
       <DrawerContentScrollView>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
+      <View style={{paddingHorizontal: 20, borderTopWidth: 1, borderTopColor: '#bbb'}}>
+        <TouchableOpacity onPress={() => {}} style={{paddingVertical: 15}}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <IonIcon name="share-social-outline" size={22} />
+            <Text
+              style={{
+                fontSize: 15,
+                fontFamily: 'Roboto-Medium',
+                marginLeft: 5,
+              }}>
+              Tell a Friend
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => {}} style={{paddingVertical: 15}}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <IonIcon name="exit-outline" size={22} />
+            <Text
+              style={{
+                fontSize: 15,
+                fontFamily: 'Roboto-Medium',
+                marginLeft: 5,
+              }}>
+              Sign Out
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -44,5 +85,12 @@ const styles = StyleSheet.create({
   username: {
     color: 'white',
     fontSize: 20,
+  },
+  coins: {
+    color: 'white',
+  },
+  bottomView: {
+    borderTopWidth: 1,
+    borderColor: '#ccc',
   },
 });

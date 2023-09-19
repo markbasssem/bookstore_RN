@@ -56,9 +56,9 @@ const LoginForm = (props: Props) => {
             })
             .then(async res => {
               if (res.status === 200) {
-                const data: User = res.data;
-                await setAccountAtLocalStorage(data.token);
-                dispatch(setAccount(data));
+                const user: User = res.data;
+                await setAccountAtLocalStorage(user.token);
+                dispatch(setAccount({user}));
                 props.navigation.replace('HomeDrawer');
               }
             })

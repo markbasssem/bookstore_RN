@@ -7,21 +7,21 @@ const initialState: User = {
   username: '',
   token: '',
   type: '',
+  money: 0,
 };
 
 export const accountSlice = createSlice({
   name: 'account',
   initialState,
   reducers: {
-    setAccount: (state, action: PayloadAction<User>) => {
-      state.username = action.payload.username;
-      state.token = action.payload.token;
-      state.type = action.payload.type;
+    setAccount: (state, action: PayloadAction<{user: User}>) => {
+      console.log('Reducer: ', action.payload.user);
+      for (const key in action.payload.user) {
+        state[key] = action.payload.user[key];
+      }
     },
     logOut: (state, action) => {
-      state.username = '';
-      state.token = '';
-      state.type = '';
+      state = <User>{};
     },
   },
 });
