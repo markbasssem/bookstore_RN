@@ -14,6 +14,19 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store/configureStore';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import Share from "react-native-share"
+import { IMAGE_URL } from '../screens/constants';
+// import { Share } from "react-native"
+
+const url = "https://awesome.contents.com/";
+const title = "Awesome Contents";
+const message = "Please check this out.";
+
+const options = {
+  title,
+  url,
+  message,
+};
 
 export default function ProfileDrawer(props) {
   const account = useSelector((state: RootState) => state.account);
@@ -36,7 +49,11 @@ export default function ProfileDrawer(props) {
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
       <View style={{ paddingHorizontal: 20, borderTopWidth: 1, borderTopColor: '#bbb' }}>
-        <TouchableOpacity onPress={() => { }} style={{ paddingVertical: 15 }}>
+        <TouchableOpacity
+          onPress={() => {
+            Share.open({ title: "Ttile", message: "Check this cool profile", url: IMAGE_URL }).catch((err) => { })
+          }}
+          style={{ paddingVertical: 15 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <IonIcon name="share-social-outline" size={22} />
             <Text
