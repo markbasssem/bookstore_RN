@@ -16,15 +16,19 @@ export async function isLoggedIn(): Promise<boolean> {
   return true;
 }
 
-export async function getAccount(): Promise<User> {
+export async function getAccount(): Promise<User | undefined> {
   const token = await EncryptedStorage.getItem('Account');
-  const result = await axios.get(`${server}:3000/`, {
-    headers: {
-      'x-auth-token': token,
-    },
-  });
-  const obj = { token, ...result.data };
-  return obj;
+  try {
+    const result = await axios.get(`${server}:3000/`, {
+      headers: {
+        'x-auth-token': token,
+      },
+    });
+    const obj = { token, ...result.data };
+    return obj;
+  } catch {
+    return undefined
+  }
 }
 
 export async function setAccountAtLocalStorage(token: string) {

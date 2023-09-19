@@ -15,6 +15,7 @@ import { getAccount, isLoggedIn } from './storage/cache';
 import SplashScreen from './screens/SplashScreen';
 import { setAccount } from './store/reducers/accountReducer';
 import HomeDrawer from './navigation/HomeDrawer';
+import ErrorScreen from './screens/ErrorScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,9 +26,14 @@ function Init(): JSX.Element {
     await isLoggedIn().then(async res => {
       if (res) {
         const user = await getAccount();
-        console.log('getInitRoute', user);
-        dispatch(setAccount({ user }));
-        setIsSignedIn('true');
+        if (user != undefined) {
+          console.log('getInitRoute', user);
+          dispatch(setAccount({ user }));
+          setIsSignedIn('true');
+        } else {
+          setIsSignedIn("error")
+          console.log("getInitRoute: Error")
+        }
       } else {
         setIsSignedIn('false');
       }
@@ -41,6 +47,10 @@ function Init(): JSX.Element {
   if (isSignedIn === 'loading') {
     // We haven't finished checking for the token yet
     return <SplashScreen />;
+  }
+
+  if (isSignedIn === "error") {
+    return <ErrorScreen />
   }
 
   return (
