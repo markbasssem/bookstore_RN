@@ -40,7 +40,7 @@ export default function Home(props: Props): JSX.Element {
   const fetchBooks = () => {
     // setRefresh(true)
     axios
-      .get(`${server}:3000/books/`, {
+      .get(`${server}/books/`, {
         headers: {
           'x-auth-token': account.token,
         },

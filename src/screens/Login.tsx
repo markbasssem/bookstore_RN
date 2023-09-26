@@ -6,6 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Modal,
+  ActivityIndicator,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { setAccount } from '../store/reducers/accountReducer';
@@ -20,6 +22,7 @@ const LoginForm = (props: Props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,8 +32,37 @@ const LoginForm = (props: Props) => {
     return unmount;
   });
 
+  const handleLogin = () => {
+    axios
+      .post(`${server}/auth/signin`, {
+        username,
+        password,
+      })
+      .then(async res => {
+        if (res.status === 200) {
+          const user: User = res.data;
+          await setAccountAtLocalStorage(user.token);
+          dispatch(setAccount({ user }));
+          props.navigation.replace('HomeDrawer');
+        }
+      })
+      .catch(err => {
+        setError('Invalid username or paassword');
+      });
+    setModalVisible(true)
+  }
   return (
     <View style={styles.container}>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <ActivityIndicator size={40} />
+          </View>
+        </View>
+      </Modal>
       <Text style={styles.title}>Login</Text>
       <TextInput
         value={username}
@@ -48,24 +80,7 @@ const LoginForm = (props: Props) => {
       />
       <TouchableOpacity
         style={styles.buttonContainer}
-        onPress={() => {
-          axios
-            .post(`${server}:3000/auth/signin`, {
-              username,
-              password,
-            })
-            .then(async res => {
-              if (res.status === 200) {
-                const user: User = res.data;
-                await setAccountAtLocalStorage(user.token);
-                dispatch(setAccount({ user }));
-                props.navigation.replace('HomeDrawer');
-              }
-            })
-            .catch(err => {
-              setError('Invalid username or paassword');
-            });
-        }}>
+        onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
       <Text style={styles.errorText}>{error}</Text>
@@ -112,6 +127,20 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     fontSize: 15,
+  },
+  modalView: {
+    margin: 20,
+    padding: 35,
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    height: "100%",
+    width: "100%",
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // marginTop: 22,
   },
 });
 

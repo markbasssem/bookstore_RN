@@ -19,7 +19,7 @@ export async function isLoggedIn(): Promise<boolean> {
 export async function getAccount(): Promise<User | undefined> {
   const token = await EncryptedStorage.getItem('Account');
   try {
-    const result = await axios.get(`${server}:3000/`, {
+    const result = await axios.get(`${server}/`, {
       headers: {
         'x-auth-token': token,
       },
