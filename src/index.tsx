@@ -32,7 +32,7 @@ function Init(): JSX.Element {
           setIsSignedIn('true');
         } else {
           setIsSignedIn("error")
-          console.log("getInitRoute: Error")
+          console.log("getInitRoute: Error", user)
         }
       } else {
         setIsSignedIn('false');

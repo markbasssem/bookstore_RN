@@ -11,34 +11,14 @@ import { server } from './constants';
 type Props = NativeStackScreenProps<any, any>;
 
 export default function Home(props: Props): JSX.Element {
-  const [books, setBooks] = useState<Book[]>([
-    // {
-    //   _id: '649080d4fb1acbd592d979d7',
-    //   title: 'Sad days',
-    //   rating: 11,
-    //   author: 'Mark',
-    //   genre: ['classic', 'drama'],
-    //   selling: 7,
-    //   image:
-    //     'https://www.coreldraw.com/static/cdgs/landing_pages/seo/logo-design/04-colors.jpg',
-    // },
-    // {
-    //   _id: '6490809bfb1acbd592d979d5',
-    //   title: 'Wind of time',
-    //   rating: 10,
-    //   author: 'Mark',
-    //   genre: ['sci-fi', 'horror'],
-    //   selling: 6,
-    //   image: IMAGE_URL,
-    // },
-  ]);
+  const [books, setBooks] = useState<Book[]>([])
+  const [featured, setFeatured] = useState<Book[]>([]);
 
   const account = useSelector((state: RootState) => state.account);
   console.log('Current account', account);
   const [refresh, setRefresh] = useState(true);
 
   const fetchBooks = () => {
-    // setRefresh(true)
     axios
       .get(`${server}/books/`, {
         headers: {
@@ -57,6 +37,8 @@ export default function Home(props: Props): JSX.Element {
       });
   };
 
+
+
   useEffect(() => {
     fetchBooks();
   }, []);
@@ -71,8 +53,10 @@ export default function Home(props: Props): JSX.Element {
           horizontal
           refreshing={refresh}
           onRefresh={fetchBooks}
+          style={{height: 300}}
           renderItem={item => <BookCard book={item.item} navigation={props} />}
         />
+        <Text style={styles.titleStyle}>Books</Text>
       </View>
     </View>
   );

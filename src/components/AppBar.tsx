@@ -30,12 +30,8 @@ export default function AppBar(props: navProp): JSX.Element {
       </View>
       <TouchableHighlight
         style={styles.signOutNormal}
-        underlayColor={'#fd6863'}
-        onPress={async () => {
-          await setAccountAtLocalStorage('');
-          dispatch(logOut);
-          props.navigation.replace('Login');
-        }}>
+        underlayColor={'#D9E1C6'}
+        onPress={() => {}}>
         <View style={{ flexDirection: 'row' }}>
           <IonIcon name="exit-outline" size={18} color={'white'} />
           <Text>{'   '}Sign Out</Text>
@@ -49,8 +45,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     marginVertical: 10,
-    borderWidth: 1,
-    padding: 10,
+    // borderWidth: 1,
+    paddingHorizontal: 10,
     borderRadius: 9,
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -61,7 +57,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   signOutNormal: {
-    backgroundColor: '#bb2f39',
+    backgroundColor: '#D4A056',
     padding: 6,
     borderRadius: 6,
   },

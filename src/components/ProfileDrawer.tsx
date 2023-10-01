@@ -10,12 +10,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/configureStore';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Share from "react-native-share"
 import { IMAGE_URL } from '../screens/constants';
+import { setAccountAtLocalStorage } from '../storage/cache';
+import { logOut } from '../store/reducers/accountReducer';
 // import { Share } from "react-native"
 
 const url = "https://awesome.contents.com/";
@@ -30,6 +32,8 @@ const options = {
 
 export default function ProfileDrawer(props) {
   const account = useSelector((state: RootState) => state.account);
+
+  const dispatch = useDispatch()
   return (
     <View style={styles.drawer}>
       <ImageBackground
@@ -66,7 +70,11 @@ export default function ProfileDrawer(props) {
             </Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => { }} style={{ paddingVertical: 15 }}>
+        <TouchableOpacity onPress={async () => {
+          await setAccountAtLocalStorage('');
+          dispatch(logOut);
+          props.navigation.replace('Login');
+        }} style={{ paddingVertical: 15 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <IonIcon name="exit-outline" size={22} />
             <Text

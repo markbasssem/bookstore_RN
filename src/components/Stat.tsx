@@ -25,9 +25,10 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
     marginHorizontal: 10,
+    borderColor: "#D4A056"
   },
   mainText: {
-    color: 'black',
+    color: '#D4A056',
     fontSize: 20,
     fontWeight: '800',
   },

@@ -1,7 +1,10 @@
-import { Image, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, TouchableOpacity, TouchableHighlight, View } from 'react-native';
 import { Book } from '../types/Book';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { IMAGE_URL } from '../screens/constants';
+
+import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 type Props = {
   book: Book;
@@ -20,8 +23,9 @@ export default function BookCard(props: Props) {
         <Image
           resizeMethod="scale"
           style={{
-            height: 125,
-            resizeMode: 'contain',
+            height: "65%",
+            resizeMode: 'stretch',
+            bottom: "17%",
           }}
           source={{
             uri: props.book.image || IMAGE_URL,
@@ -34,9 +38,25 @@ export default function BookCard(props: Props) {
           style={{
             justifyContent: 'flex-end',
             flex: 1,
+            marginVertical: "20%"
+
           }}>
           <Text style={styles.secondaryText}>{props.book.author.name}</Text>
-          <Text style={styles.secondaryText}>{props.book.rating}*</Text>
+          <View style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between"
+          }}>
+            <View style={{ flexDirection: "row" }}>
+              <Entypo name='star' color={"#FDCC0D"} size={14} />
+              <Text style={styles.rating}>{" " + props.book.rating + " "}</Text>
+            </View>
+            <TouchableOpacity onPress={() => {
+              console.log("RRRR")
+            }}>
+              <AntDesign name='pluscircle' size={30} color={"#D4A056"} />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </TouchableHighlight>
@@ -45,19 +65,19 @@ export default function BookCard(props: Props) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#ddd',
-    borderRadius: 8,
+    backgroundColor: '#F8F0E5',
+    borderRadius: 22,
     padding: 15,
-    height: 270,
+    height: "100%",
     width: 170,
-    marginVertical: 10,
+    marginVertical: 35,
     marginRight: 15,
   },
   titleStyle: {
     color: 'black',
     fontSize: 18,
     fontWeight: '600',
-    marginVertical: 13,
+    marginVertical: "-20%",
   },
   secondaryText: {
     color: 'black',
@@ -66,4 +86,7 @@ const styles = StyleSheet.create({
     elevation: 10,
     shadowColor: '#52006A',
   },
+  rating: {
+    fontSize: 12
+  }
 });
