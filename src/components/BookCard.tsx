@@ -25,7 +25,7 @@ export default function BookCard(props: Props) {
           style={{
             height: "65%",
             resizeMode: 'stretch',
-            bottom: "17%",
+            bottom: "19%",
           }}
           source={{
             uri: props.book.image || IMAGE_URL,

@@ -53,7 +53,7 @@ export default function Home(props: Props): JSX.Element {
           horizontal
           refreshing={refresh}
           onRefresh={fetchBooks}
-          style={{height: 300}}
+          style={{height: "38%"}}
           renderItem={item => <BookCard book={item.item} navigation={props} />}
         />
         <Text style={styles.titleStyle}>Books</Text>
