@@ -16,6 +16,7 @@ import SplashScreen from './screens/SplashScreen';
 import { setAccount } from './store/reducers/accountReducer';
 import HomeDrawer from './navigation/HomeDrawer';
 import ErrorScreen from './screens/ErrorScreen';
+import { Button, Text, View } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,7 +51,10 @@ function Init(): JSX.Element {
   }
 
   if (isSignedIn === "error") {
-    return <ErrorScreen />
+    return <View>
+      <Text>Error</Text>
+      <Button onPress={getinitRoute} title="Try again" />
+    </View>
   }
 
   return (

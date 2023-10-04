@@ -54,7 +54,7 @@ export default function BookCard(props: Props) {
             <TouchableOpacity onPress={() => {
               console.log("RRRR")
             }}>
-              <AntDesign name='pluscircle' size={30} color={"#D4A056"} />
+              <AntDesign name='pluscircle' size={33} color={"#D4A056"} />
             </TouchableOpacity>
           </View>
         </View>
