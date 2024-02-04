@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { setAccount } from '../store/reducers/accountReducer';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { server } from './constants';
 import { User } from '../types/User';
 import { setAccountAtLocalStorage } from '../storage/cache';
@@ -33,11 +33,14 @@ const LoginForm = (props: Props) => {
   });
 
   const handleLogin = () => {
+    setError("")
+    const requestURL = `${server}/auth/signin`
+    console.log("Sending request to ", requestURL)
     axios
-      .post(`${server}/auth/signin`, {
+      .post(requestURL, {
         username,
-        password,
-      })
+        password
+      }, {timeout: 2000})
       .then(async res => {
         if (res.status === 200) {
           const user: User = res.data;
@@ -46,8 +49,21 @@ const LoginForm = (props: Props) => {
           props.navigation.replace('HomeDrawer');
         }
       })
-      .catch(err => {
-        setError('Invalid username or paassword');
+      .catch((err: AxiosError) => {
+        console.log(JSON.stringify(err.response?.status))
+        if (err.response?.status == 400){
+          setError("Invalid credentials")
+        }
+        else if (err.request){
+          setError('Network error');
+        }
+        else if (axios.isCancel(error)){
+          setError("Timeout error")
+        }
+        else {
+          setError("App is not responding")
+        }
+        setModalVisible(false)
       });
     setModalVisible(true)
   }
