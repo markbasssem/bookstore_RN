@@ -59,13 +59,9 @@ export default function ProfileDrawer(props) {
           }}
           style={{ paddingVertical: 15 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <IonIcon name="share-social-outline" size={22} />
+            <IonIcon name="share-social-outline" size={22} color={"black"}/>
             <Text
-              style={{
-                fontSize: 15,
-                fontFamily: 'Roboto-Medium',
-                marginLeft: 5,
-              }}>
+              style={styles.textStyle}>
               Tell a Friend
             </Text>
           </View>
@@ -76,13 +72,9 @@ export default function ProfileDrawer(props) {
           props.navigation.replace('Login');
         }} style={{ paddingVertical: 15 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <IonIcon name="exit-outline" size={22} />
+            <IonIcon name="exit-outline" size={22} color={"black"} />
             <Text
-              style={{
-                fontSize: 15,
-                fontFamily: 'Roboto-Medium',
-                marginLeft: 5,
-              }}>
+              style={styles.textStyle}>
               Sign Out
             </Text>
           </View>
@@ -117,5 +109,11 @@ const styles = StyleSheet.create({
   bottomView: {
     borderTopWidth: 1,
     borderColor: '#ccc',
+  },
+  textStyle: {
+    fontSize: 15,
+    fontFamily: 'Roboto-Medium',
+    marginLeft: 5,
+    color: "black"
   },
 });

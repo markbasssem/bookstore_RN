@@ -56,7 +56,7 @@ export default function BookDetails({ route, navigation }: Props): JSX.Element {
 
       </View>
       <View style={styles.bottom}>
-        <Feather name='shopping-cart' size={30} style={styles.buyIcon} />
+        <Feather name='shopping-cart' size={30} color={"black"} style={styles.buyIcon} />
         <TouchableOpacity style={styles.buy} onPress={() => { console.log("RR") }}>
           <Text style={styles.buyText}>Buy now</Text>
           <MaterialIcons name='arrow-forward-ios' size={28} color={"white"} />

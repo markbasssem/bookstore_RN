@@ -85,6 +85,7 @@ const LoginForm = (props: Props) => {
         onChangeText={setUsername}
         style={styles.input}
         placeholder="Username"
+        placeholderTextColor={"gray"}
         autoCapitalize="none"
       />
       <TextInput
@@ -92,6 +93,7 @@ const LoginForm = (props: Props) => {
         onChangeText={setPassword}
         style={styles.input}
         placeholder="Password"
+        placeholderTextColor={"gray"}
         secureTextEntry
       />
       <TouchableOpacity
@@ -116,6 +118,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 30,
+    color: "black"
   },
   input: {
     width: '100%',
