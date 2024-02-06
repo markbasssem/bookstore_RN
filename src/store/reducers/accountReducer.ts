@@ -7,6 +7,7 @@ const initialState: User = {
   token: '',
   type: '',
   money: 0,
+  cart: []
 };
 
 export const accountSlice = createSlice({
@@ -14,7 +15,7 @@ export const accountSlice = createSlice({
   initialState,
   reducers: {
     setAccount: (state, action: PayloadAction<{ user: User }>) => {
-      console.log('Reducer: ', action.payload.user);
+      // console.log('Reducer: ', action.payload.user);
       for (const key in action.payload.user) {
         state[key] = action.payload.user[key];
       }

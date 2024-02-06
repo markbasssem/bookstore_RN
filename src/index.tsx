@@ -28,7 +28,7 @@ function Init(): JSX.Element {
       if (res) {
         const user = await getAccount();
         if (user != undefined) {
-          console.log('getInitRoute', user);
+          // console.log('getInitRoute', user);
           dispatch(setAccount({ user }));
           setIsSignedIn('true');
         } else {
@@ -52,7 +52,7 @@ function Init(): JSX.Element {
 
   if (isSignedIn === "error") {
     return <View>
-      <Text>Error</Text>
+      <Text>Network Error</Text>
       <Button onPress={getinitRoute} title="Try again" />
     </View>
   }

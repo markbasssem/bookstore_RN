@@ -24,7 +24,7 @@ export default function HomeDrawer() {
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
-        swipeEdgeWidth: 75,
+        swipeEdgeWidth: 45,
         drawerLabelStyle: styles.labels,
         drawerActiveTintColor: '#dddfff',
         drawerActiveBackgroundColor: '#000',

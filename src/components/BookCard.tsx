@@ -1,10 +1,14 @@
 import { Image, Pressable, StyleSheet, Text, TouchableOpacity, TouchableHighlight, View } from 'react-native';
 import { Book } from '../types/Book';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { IMAGE_URL } from '../screens/constants';
+import { IMAGE_URL, server } from '../screens/constants';
 
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import axios, { AxiosError } from 'axios';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/configureStore';
+import { useState } from 'react';
 
 type Props = {
   book: Book;
@@ -12,9 +16,49 @@ type Props = {
 };
 
 export default function BookCard(props: Props) {
+
+  const account = useSelector((state: RootState) => state.account);
+
+  const initialValue = account.cart.includes(props.book._id) ? "checkcircleo" : "pluscircleo"
+
+  // console.log(props.book.title, "value is", "initialValue", "With acc", account.cart)
+
+  const [icon, setIcon] = useState(initialValue)
+
   const goToBookPage = (book: Book) => {
     props.navigation.navigation.navigate('BookDetails', { book: book });
   };
+  const addToCart = async () => {
+    if (icon == "pluscircleo") {
+      axios.post(`${server}/cart/${props.book._id}`, {}, {
+        headers: {
+          'x-auth-token': account.token,
+        },
+      })
+        .then(result => {
+          console.log(`${props.book._id} is added with data ${result.data}`)
+          setIcon("checkcircleo")
+        })
+        .catch((err: AxiosError) => {
+          console.log(err.response?.data)
+        })
+    } else {
+      console.log("Already in cart and deleting")
+      axios.delete(`${server}/cart/${props.book._id}`, {
+        headers: {
+          'x-auth-token': account.token,
+        },
+      })
+        .then(result => {
+          console.log(`${props.book._id} is deleted with data ${result.data}`)
+          setIcon("pluscircleo")
+        })
+        .catch((err: AxiosError) => {
+          console.log(err.response?.data)
+        })
+    }
+  }
+
   return (
     <TouchableHighlight
       underlayColor={'white'}
@@ -22,11 +66,7 @@ export default function BookCard(props: Props) {
       <View style={[styles.card, styles.elevation]}>
         <Image
           resizeMethod="scale"
-          style={{
-            height: "65%",
-            resizeMode: 'stretch',
-            bottom: "19%",
-          }}
+          style={styles.imageStyle}
           source={{
             uri: props.book.image || IMAGE_URL,
           }}
@@ -52,9 +92,9 @@ export default function BookCard(props: Props) {
               <Text style={styles.rating}>{" " + props.book.rating + " "}</Text>
             </View>
             <TouchableOpacity onPress={() => {
-              console.log("RRRR")
+              addToCart()
             }}>
-              <AntDesign name='pluscircle' size={33} color={"#D4A056"} />
+              <AntDesign name={icon} size={33} color={"#D4A056"} />
             </TouchableOpacity>
           </View>
         </View>
@@ -72,6 +112,15 @@ const styles = StyleSheet.create({
     width: 170,
     marginVertical: 35,
     marginRight: 15,
+  },
+  imageStyle: {
+    height: "65%",
+    resizeMode: 'stretch',
+    bottom: "19%",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15
   },
   titleStyle: {
     color: 'black',

@@ -6,7 +6,7 @@ import { User } from '../types/User';
 export async function isLoggedIn(): Promise<boolean> {
   try {
     const firstTime = await EncryptedStorage.getItem('Account');
-    console.log('cache', firstTime);
+    // console.log('cache', firstTime);
     if (firstTime === null || firstTime === '') {
       return false;
     }

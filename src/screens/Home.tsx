@@ -15,7 +15,8 @@ export default function Home(props: Props): JSX.Element {
   const [featured, setFeatured] = useState<Book[]>([]);
 
   const account = useSelector((state: RootState) => state.account);
-  console.log('Current account', account);
+  // console.log('Current account', account);
+
   const [refresh, setRefresh] = useState(true);
 
   const fetchBooks = () => {
@@ -53,7 +54,7 @@ export default function Home(props: Props): JSX.Element {
           horizontal
           refreshing={refresh}
           onRefresh={fetchBooks}
-          style={{height: 300}}
+          style={styles.bookContainer}
           renderItem={item => <BookCard book={item.item} navigation={props} />}
         />
         <Text style={styles.titleStyle}>Books</Text>
@@ -73,4 +74,7 @@ const styles = StyleSheet.create({
   secondaryText: {
     color: 'black',
   },
+  bookContainer: {
+    height: 300,
+  }
 });
