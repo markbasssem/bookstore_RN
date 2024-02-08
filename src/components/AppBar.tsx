@@ -1,9 +1,7 @@
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/configureStore';
-import { logOut } from '../store/reducers/accountReducer';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { setAccountAtLocalStorage } from '../storage/cache';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { DrawerActions } from '@react-navigation/native';
 import IonIcon from 'react-native-vector-icons/Ionicons';

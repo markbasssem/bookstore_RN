@@ -3,6 +3,8 @@ export type User = {
     type: string;
     username: string;
     money: number,
-    cart: [string]
+    cart: [string],
+    mobile_no: string,
+    email: string
   };
   
