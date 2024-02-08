@@ -1,19 +1,13 @@
 import * as React from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import ProfileDrawer from '../components/ProfileDrawer';
 import HomeStack from './HomeStack';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Antdesign from 'react-native-vector-icons/AntDesign';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import ProfileScreen from '../screens/ProfileScreen';
 
-function NotificationsScreen({ navigation }: NativeStackScreenProps<any, any>) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button onPress={() => navigation.goBack()} title="Go back home" />
-    </View>
-  );
-}
+
 
 const Drawer = createDrawerNavigator();
 
@@ -24,10 +18,11 @@ export default function HomeDrawer() {
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
-        swipeEdgeWidth: 45,
+        swipeEdgeWidth: 25,
         drawerLabelStyle: styles.labels,
         drawerActiveTintColor: '#dddfff',
         drawerActiveBackgroundColor: '#000',
+        drawerType: "slide"
       }}>
       <Drawer.Screen
         name="HomeStack"
@@ -40,7 +35,7 @@ export default function HomeDrawer() {
       />
       <Drawer.Screen
         name="Notifications"
-        component={NotificationsScreen}
+        component={ProfileScreen}
         options={{
           drawerIcon: ({ color }) => (
             <IonIcon name="notifications-outline" size={24} color={color} />
@@ -49,7 +44,7 @@ export default function HomeDrawer() {
       />
       <Drawer.Screen
         name="Profile"
-        component={NotificationsScreen}
+        component={ProfileScreen}
         options={{
           drawerIcon: ({ color }) => (
             <Antdesign name="profile" size={24} color={color} />
@@ -58,7 +53,7 @@ export default function HomeDrawer() {
       />
       <Drawer.Screen
         name="Settings"
-        component={NotificationsScreen}
+        component={ProfileScreen}
         options={{
           drawerIcon: ({ color }) => (
             <IonIcon name="settings-outline" size={24} color={color} />
