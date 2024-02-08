@@ -6,6 +6,7 @@ import BackBar from '../components/BackBar';
 import Stat from '../components/Stat';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import LineSeparator from '../components/LineSeparator';
 
 type Props = NativeStackScreenProps<BookDetailsParamList, 'BookDetails'>;
 
@@ -35,6 +36,7 @@ export default function BookDetails({ route, navigation }: Props): JSX.Element {
           </Text>
         </View>
       </View>
+      <LineSeparator />
       {/* desc */}
       <View style={styles.bookDescription}>
         <Text style={[styles.titleStyle, { marginVertical: 15 }]}>
@@ -44,6 +46,7 @@ export default function BookDetails({ route, navigation }: Props): JSX.Element {
           {route.params.book.description}
         </Text>
       </View>
+      <LineSeparator />
       {/* stats */}
       <View style={styles.bookStats}>
         <Stat
@@ -55,6 +58,8 @@ export default function BookDetails({ route, navigation }: Props): JSX.Element {
         <Stat first="Length" second={route.params.book.pages} third="pages" />
 
       </View>
+      <LineSeparator />
+      {/* Bye book */}
       <View style={styles.bottom}>
         <Feather name='shopping-cart' size={30} color={"black"} style={styles.buyIcon} />
         <TouchableOpacity style={styles.buy} onPress={() => { console.log("RR") }}>
@@ -74,24 +79,16 @@ const styles = StyleSheet.create({
     // justifyContent: 'space-between',
   },
   bookHeader: {
-    // backgroundColor: 'green',
-    borderBottomWidth: 1,
-    borderBottomColor: '#D4A056',
     flexDirection: 'row',
     padding: 10,
   },
   bookDescription: {
-    // backgroundColor: 'red',
-    borderBottomWidth: 1,
-    borderBottomColor: '#D4A056',
     marginVertical: 10,
     padding: 10,
   },
   bookStats: {
-    // backgroundColor: 'grey',
-    borderBottomWidth: 1,
-    borderBottomColor: '#D4A056',
     flexDirection: 'row',
+    marginVertical: "4%"
   },
   titleStyle: {
     color: '#D4A056',
