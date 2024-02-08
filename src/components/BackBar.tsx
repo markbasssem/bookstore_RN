@@ -10,11 +10,11 @@ export default function BackBar(props: navProp): JSX.Element {
   return (
     <TouchableOpacity
       onPress={() => {
-        props.navigation.pop();
+        props.navigation.goBack();
       }}>
       <View style={{ alignItems: 'center', flexDirection: 'row' }}>
         <Icon
-          style={{ backgroundColor: 'white' }}
+          style={{ backgroundColor: "transparent" }}
           name="arrow-back-outline"
           color="#00000f"
           size={40}
