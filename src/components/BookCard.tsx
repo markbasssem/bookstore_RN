@@ -108,10 +108,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#F8F0E5',
     borderRadius: 22,
     padding: 15,
-    height: "100%",
+    paddingBottom: 5,
+    height: "90%",
     width: 170,
     marginVertical: 35,
     marginRight: 15,
+    borderColor: "black",
+    borderWidth: 2
   },
   imageStyle: {
     height: "65%",
@@ -126,16 +129,17 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 18,
     fontWeight: '600',
-    marginVertical: "-20%",
+    marginVertical: "-15%",
   },
   secondaryText: {
     color: 'black',
+    fontSize: 18,
   },
   elevation: {
     elevation: 10,
     shadowColor: '#52006A',
   },
   rating: {
-    fontSize: 12
+    fontSize: 14
   }
 });

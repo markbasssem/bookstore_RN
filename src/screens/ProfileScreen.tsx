@@ -40,7 +40,7 @@ export default function ProfileScreen({ navigation }: NativeStackScreenProps<any
             <View style={styles.middleView}>
                 <Text style={styles.box}>$ {account.money}</Text>
                 <LineSeparator vertical={true} width={0.9} />
-                <Text style={styles.box}>{account.money}</Text>
+                <Text style={styles.box}>{account.type}</Text>
             </View>
             <LineSeparator width={0.9} />
         </View>
@@ -94,10 +94,11 @@ const styles = StyleSheet.create({
         // marginVertical: "7%"
     },
     box: {
-        padding: "7%",
-        // alignSelf: "center",
+        alignSelf: "center",
         fontSize: 20,
-        color: "black"
-    }
+        color: "black",
+        flex: 1,
+        textAlign: "center"
+    },
 
 })

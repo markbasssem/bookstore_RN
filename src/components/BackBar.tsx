@@ -19,7 +19,7 @@ export default function BackBar(props: navProp): JSX.Element {
           color="#00000f"
           size={40}
         />
-        <Text style={{ color: 'black', fontSize: 16 }}>Back</Text>
+        <Text style={{ color: 'black', fontSize: 16 }}>  Back</Text>
       </View>
     </TouchableOpacity>
   );

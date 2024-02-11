@@ -57,7 +57,7 @@ export default function Home(props: Props): JSX.Element {
           style={styles.bookContainer}
           renderItem={item => <BookCard book={item.item} navigation={props} />}
         />
-        <Text style={styles.titleStyle}>Books</Text>
+        {/* <Text style={styles.titleStyle}>Books</Text> */}
       </View>
     </View>
   );
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   bookContainer: {
-    height: 300,
+    height: "47%",
+    // paddingBottom: 30
   }
 });
