@@ -15,6 +15,7 @@ import axios, { AxiosError } from 'axios';
 import { server } from './constants';
 import { User } from '../types/User';
 import { setAccountAtLocalStorage } from '../storage/cache';
+import CustText from '../components/CustText';
 
 type Props = NativeStackScreenProps<any, any>;
 
@@ -86,12 +87,15 @@ const LoginForm = (props: Props) => {
         </View>
       </Modal>
       <Text style={styles.title}>
-        Login
+        Login {" "}
         <TouchableOpacity onPress={() => {
           props.navigation.navigate("Signup")
-        }}><Text>
+        }}>
+          <CustText>
             Or signup
-          </Text></TouchableOpacity></Text>
+          </CustText>
+        </TouchableOpacity>
+      </Text>
       <TextInput
         value={username}
         onChangeText={setUsername}

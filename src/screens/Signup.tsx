@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
     View,
     Text,
@@ -9,13 +9,12 @@ import {
     Modal,
     ActivityIndicator,
 } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { setAccount } from '../store/reducers/accountReducer';
 import axios, { AxiosError } from 'axios';
 import { server } from './constants';
 import { User } from '../types/User';
-import { setAccountAtLocalStorage } from '../storage/cache';
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import { launchImageLibrary } from 'react-native-image-picker';
+import CustText from '../components/CustText';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 type Props = NativeStackScreenProps<any, any>;
 
@@ -25,13 +24,6 @@ const SignupForm = (props: Props) => {
     const [error, setError] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
     const [photo, setPhoto] = useState<string | undefined>("")
-
-    useEffect(() => {
-        const unmount = () => {
-            console.log('unmounted');
-        };
-        return unmount;
-    });
 
     const handleSignup = () => {
         setError("")
@@ -87,24 +79,30 @@ const SignupForm = (props: Props) => {
                 </View>
             </Modal>
             <Text style={styles.title}>
-                Signup
+                Signup {" "}
                 <TouchableOpacity onPress={() => {
                     props.navigation.navigate("Login")
-                }}><Text>
-                        Or Login
-                    </Text></TouchableOpacity></Text>
+                }}>
+                    <CustText>
+                        or Login
+                    </CustText>
+                </TouchableOpacity>
+            </Text>
             <TouchableOpacity
                 onPress={async () => {
                     console.log("het")
-                    const result = await launchImageLibrary({ mediaType: "photo", maxHeight: 800, maxWidth: 400, includeBase64: true });
+                    const result = await launchImageLibrary({ mediaType: "photo", maxHeight: 600, maxWidth: 400, includeBase64: true });
                     // console.log(result)
                     if (result.assets) {
                         console.log("Result")
-                        console.log(result.assets[0].type)
+                        console.log(result.assets[0].fileSize)
                         setPhoto(result.assets[0].base64)
                     }
                 }}>
-                <Text>Picture</Text>
+
+                <CustText>Upload picture {" "}
+                    <AntDesign name="upload" size={14} color={'gray'}></AntDesign></CustText>
+
             </TouchableOpacity>
             <TextInput
                 value={username}

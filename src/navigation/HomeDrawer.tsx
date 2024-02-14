@@ -25,7 +25,7 @@ export default function HomeDrawer() {
         drawerType: "slide"
       }}>
       <Drawer.Screen
-        name="HomeStack"
+        name="Home"
         component={HomeStack}
         options={{
           drawerIcon: ({ color }) => (
