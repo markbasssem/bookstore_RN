@@ -15,7 +15,7 @@ export default function HomeDrawer() {
   return (
     <Drawer.Navigator
       drawerContent={props => <ProfileDrawer {...props} />}
-      initialRouteName="Home"
+      initialRouteName="HomeScreen"
       screenOptions={{
         headerShown: false,
         swipeEdgeWidth: 25,
@@ -25,7 +25,7 @@ export default function HomeDrawer() {
         drawerType: "slide"
       }}>
       <Drawer.Screen
-        name="Home"
+        name="HomeScreen"
         component={HomeStack}
         options={{
           drawerIcon: ({ color }) => (

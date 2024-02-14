@@ -153,6 +153,7 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         borderWidth: 1,
         borderRadius: 5,
+        color: "black"
     },
     buttonContainer: {
         width: '100%',
