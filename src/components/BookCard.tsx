@@ -87,7 +87,7 @@ export default function BookCard(props: Props) {
             alignItems: "center",
             justifyContent: "space-between"
           }}>
-            <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
               <Entypo name='star' color={"#FDCC0D"} size={14} />
               <Text style={styles.rating}>{" " + props.book.rating + " "}</Text>
             </View>
@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
     shadowColor: '#52006A',
   },
   rating: {
-    fontSize: 14
+    fontSize: 14,
+    color: "gray"
   }
 });
