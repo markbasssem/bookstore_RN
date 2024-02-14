@@ -17,6 +17,7 @@ import { setAccount } from './store/reducers/accountReducer';
 import HomeDrawer from './navigation/HomeDrawer';
 import ErrorScreen from './screens/ErrorScreen';
 import { Button, Text, View } from 'react-native';
+import SignupForm from './screens/Signup';
 
 const Stack = createNativeStackNavigator();
 
@@ -43,7 +44,7 @@ function Init(): JSX.Element {
 
   useEffect(() => {
     getinitRoute();
-  });
+  }, []);
 
   if (isSignedIn === 'loading') {
     // We haven't finished checking for the token yet
@@ -63,6 +64,7 @@ function Init(): JSX.Element {
         screenOptions={{ headerShown: false }}
         initialRouteName={isSignedIn === 'false' ? 'Login' : 'HomeDrawer'}>
         <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Signup" component={SignupForm} />
         <Stack.Screen name="HomeDrawer" component={HomeDrawer} />
       </Stack.Navigator>
     </NavigationContainer>

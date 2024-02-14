@@ -20,27 +20,20 @@ import { setAccountAtLocalStorage } from '../storage/cache';
 import { logOut } from '../store/reducers/accountReducer';
 // import { Share } from "react-native"
 
-const url = "https://awesome.contents.com/";
-const title = "Awesome Contents";
-const message = "Please check this out.";
-
-const options = {
-  title,
-  url,
-  message,
-};
 
 export default function ProfileDrawer(props) {
   const account = useSelector((state: RootState) => state.account);
 
   const dispatch = useDispatch()
+  // console.log(account.photo)
   return (
     <View style={styles.drawer}>
       <ImageBackground
         source={require('../../assets/profile_background.webp')}
         style={styles.background}>
         <Image
-          source={require('../../assets/avatar.png')}
+          // source={{ uri: `data:${account.photo}` }}
+          source={{ uri: `data:image/png;base64,${account.photo}` }}
           style={styles.avatar}
         />
         <Text style={styles.username}>{account.username}</Text>
@@ -59,7 +52,7 @@ export default function ProfileDrawer(props) {
           }}
           style={{ paddingVertical: 15 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <IonIcon name="share-social-outline" size={22} color={"black"}/>
+            <IonIcon name="share-social-outline" size={22} color={"black"} />
             <Text
               style={styles.textStyle}>
               Tell a Friend
@@ -98,6 +91,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: 100,
     height: 100,
+    borderRadius: 70
   },
   username: {
     color: 'white',

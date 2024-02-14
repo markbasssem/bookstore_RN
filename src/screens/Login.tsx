@@ -34,16 +34,21 @@ const LoginForm = (props: Props) => {
 
   const handleLogin = () => {
     setError("")
+    if (!(username || password)) {
+      setError("Data not entered")
+      return;
+    }
     const requestURL = `${server}/auth/signin`
     console.log("Sending request to ", requestURL)
     axios
       .post(requestURL, {
         username,
         password
-      }, {timeout: 2000})
+      }, { timeout: 2000 })
       .then(async res => {
         if (res.status === 200) {
           const user: User = res.data;
+          console.log(user)
           await setAccountAtLocalStorage(user.token);
           dispatch(setAccount({ user }));
           props.navigation.replace('HomeDrawer');
@@ -51,13 +56,13 @@ const LoginForm = (props: Props) => {
       })
       .catch((err: AxiosError) => {
         console.log(JSON.stringify(err.response?.status))
-        if (err.response?.status == 400){
+        if (err.response?.status == 400) {
           setError("Invalid credentials")
         }
-        else if (err.request){
+        else if (err.request) {
           setError('Network error');
         }
-        else if (axios.isCancel(error)){
+        else if (axios.isCancel(error)) {
           setError("Timeout error")
         }
         else {
@@ -67,6 +72,7 @@ const LoginForm = (props: Props) => {
       });
     setModalVisible(true)
   }
+
   return (
     <View style={styles.container}>
       <Modal
@@ -79,7 +85,13 @@ const LoginForm = (props: Props) => {
           </View>
         </View>
       </Modal>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>
+        Login
+        <TouchableOpacity onPress={() => {
+          props.navigation.navigate("Signup")
+        }}><Text>
+            Or signup
+          </Text></TouchableOpacity></Text>
       <TextInput
         value={username}
         onChangeText={setUsername}

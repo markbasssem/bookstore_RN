@@ -5,6 +5,7 @@ export type User = {
     money: number,
     cart: [string],
     mobile_no: string,
-    email: string
+    email: string,
+    photo: string
   };
   
