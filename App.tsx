@@ -10,12 +10,16 @@ import 'react-native-gesture-handler';
 import { Provider } from 'react-redux';
 import { store } from './src/store/configureStore';
 import Init from './src';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 function App(): JSX.Element {
 
   return (
     <Provider store={store}>
-      <Init />
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Init />
+      </GestureHandlerRootView>
+
     </Provider>
   );
 }
