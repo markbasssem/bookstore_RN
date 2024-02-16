@@ -87,6 +87,12 @@ android {
         versionName "1.0"
     }
     signingConfigs {
+      debug {
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
     release {
       storeFile file('bookstore.keystore')
       storePassword 'MakMakxxq5<bookstore>'
@@ -95,6 +101,9 @@ android {
     }
   }
   buildTypes {
+     debug {
+            signingConfig signingConfigs.debug
+        }
     release {
       signingConfig signingConfigs.release
     }
