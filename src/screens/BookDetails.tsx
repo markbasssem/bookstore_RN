@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableHighlight, TouchableOpacity, Linking } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { BookDetailsParamList } from '../types/navigation';
 import { IMAGE_URL } from './constants';
@@ -7,10 +7,23 @@ import Stat from '../components/Stat';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import LineSeparator from '../components/LineSeparator';
+import React from 'react';
 
 type Props = NativeStackScreenProps<BookDetailsParamList, 'BookDetails'>;
 
 export default function BookDetails({ route, navigation }: Props): JSX.Element {
+  const url = "https://buy.stripe.com/test_dR65m9dpdcThaRy288"
+  const handleBuy = () => {
+    console.log("Buyingg")
+    Linking.canOpenURL(url).then(supported => {
+      if (supported) {
+        Linking.openURL(url);
+      } else {
+        console.log("Don't know how to open URI: " + url);
+      }
+    });
+  };
+
   return (
     <View style={styles.container}>
       <BackBar navigation={navigation} />
@@ -62,7 +75,7 @@ export default function BookDetails({ route, navigation }: Props): JSX.Element {
       {/* Bye book */}
       <View style={styles.bottom}>
         <Feather name='shopping-cart' size={30} color={"black"} style={styles.buyIcon} />
-        <TouchableOpacity style={styles.buy} onPress={() => { console.log("RR") }}>
+        <TouchableOpacity style={styles.buy} onPress={handleBuy}>
           <Text style={styles.buyText}>Buy now</Text>
           <MaterialIcons name='arrow-forward-ios' size={28} color={"white"} />
         </TouchableOpacity>

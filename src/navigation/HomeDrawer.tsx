@@ -6,6 +6,7 @@ import HomeStack from './HomeStack';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Antdesign from 'react-native-vector-icons/AntDesign';
 import ProfileScreen from '../screens/ProfileScreen';
+import PaymentScreen from '../screens/PaymentScreen';
 
 
 
@@ -35,7 +36,7 @@ export default function HomeDrawer() {
       />
       <Drawer.Screen
         name="Notifications"
-        component={ProfileScreen}
+        component={PaymentScreen}
         options={{
           drawerIcon: ({ color }) => (
             <IonIcon name="notifications-outline" size={24} color={color} />

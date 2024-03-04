@@ -27,10 +27,10 @@ const LoginForm = (props: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unmount = () => {
-      console.log('unmounted');
-    };
-    return unmount;
+    // const unmount = () => {
+    //   console.log('unmounted');
+    // };
+    // return unmount;
   });
 
   const handleLogin = () => {
@@ -56,7 +56,7 @@ const LoginForm = (props: Props) => {
         }
       })
       .catch((err: AxiosError) => {
-        console.log(JSON.stringify(err.response?.status))
+        console.log("Login: Status", JSON.stringify(err))
         if (err.response?.status == 400) {
           setError("Invalid credentials")
         }
