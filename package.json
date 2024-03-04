@@ -9,7 +9,8 @@
     "start": "react-native start",
     "test": "jest",
     "clean": "rm -rf node_modules",
-    "startover": "yarn clean && yarn && yarn android"
+    "startover": "yarn clean && yarn && yarn android",
+    "release": "npx react-native build-android --mode=release && yarn android --mode release"
   },
   "dependencies": {
     "@react-navigation/drawer": "^6.6.7",
